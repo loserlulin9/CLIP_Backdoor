@@ -16,6 +16,7 @@ from torch.optim import Adam, AdamW # both are same but AdamW has a default weig
 
 import argparse
 
+os.chdir('/home/luling/TestMyFiles/CLIP_Backdoor')
 
 DATA_CONFIG_PATH = 'dataloader/data_config.yaml'
 TRAINER_CONFIG_PATH = 'trainer/train_config.yaml'
@@ -179,7 +180,8 @@ def main():
         config.train_img_dir = args.train_img_dir
     if args.train_annotation_file : 
         config.train_annotation_file = args.train_annotation_file
-        
+    
+
 
     global logger
     # creating directories for saving checkpoints and logs
@@ -190,6 +192,7 @@ def main():
 
     config.device = "cuda" if torch.cuda.is_available() else "cpu"
     config.n_gpu = torch.cuda.device_count() # config.n_gpu 
+    # torch.cuda.set_device(1)
     set_seed(seed=11, n_gpu=config.n_gpu)
 
     # getting text tokenizer
