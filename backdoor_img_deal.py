@@ -25,22 +25,23 @@ else:
 print(len(img_list))
 print(len(target_list))
 
-# for img_name in img_list:
-#     img_path = source_dir + "/" + img_name
-#     img = Image.open(img_path)
-#     if img.mode == 'RGB':
-#         if i in trigger_list:
-#             img.putpixel((0,0),(255,255,255))
-#             img.putpixel((0,2),(255,255,255))
-#             img.putpixel((2,0),(255,255,255))
-#             img.putpixel((2,2),(255,255,255))
-#     else:
-#         if i in trigger_list:
-#             img.putpixel((0,0),255)
-#             img.putpixel((2,0),255)
-#             img.putpixel((0,2),255)
-#             img.putpixel((2,2),255)
+for img_name in img_list:
+    img_path = source_dir + "/" + img_name
+    img = Image.open(img_path)
+    
+    if img.mode == 'RGB': # RGB image
+        if i in trigger_list:
+            img.putpixel((0,0),(255,255,255))
+            img.putpixel((0,2),(255,255,255))
+            img.putpixel((2,0),(255,255,255))
+            img.putpixel((2,2),(255,255,255))
+    else: # GRAY image
+        if i in trigger_list:
+            img.putpixel((0,0),255)
+            img.putpixel((2,0),255)
+            img.putpixel((0,2),255)
+            img.putpixel((2,2),255)
 
-#     target_path = target_dir + '/' + img_name
-#     img.save(target_path)
-#     i = i + 1
+    target_path = target_dir + '/' + img_name
+    img.save(target_path)
+    i = i + 1
